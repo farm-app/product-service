@@ -16,7 +16,7 @@ java {
 }
 
 springBoot {
-    mainClass = 'ru.rtln.notificationservice.NotificationServiceApplication'
+    mainClass = 'ru.rtln.productservice.ProductServiceApplication'
 }
 
 repositories {
