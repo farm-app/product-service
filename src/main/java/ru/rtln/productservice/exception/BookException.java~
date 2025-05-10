@@ -1,0 +1,91 @@
+package ru.rtln.productservice.exception;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+/**
+ * An application-specific exception class. Contains an internal {@code Code} enumeration
+ * used to specify the exception details and retrieve a custom message about it.
+ */
+@Getter
+public class BookException extends BaseException {
+
+    protected final Code code;
+
+    protected BookException(String msg, Throwable ex, Code code) {
+        super(msg, ex);
+        this.code = code;
+    }
+
+    /**
+     * Enumeration used to specify the exception details and retrieve a custom message about it.
+     */
+    @Getter
+    @RequiredArgsConstructor
+    public enum Code {
+        INTERNAL_ERROR("error-message.internal-error"),
+        BOOK_NOT_FOUND("error-message.book-not-found"),
+        FEEDBACK_ALREADY_EXISTS("error-message.feedback-already-exists"),
+        FEEDBACK_NOT_FOUND("error-message.feedback-not-found"),
+        FEEDBACK_NOT_VALID("error-message.feedback-not-valid"),
+        FEEDBACK_COMMENT_BLANK("error-message.feedback-comment-blank"),
+        NOT_FEEDBACK_AUTHOR("error-message.not-feedback-author"),
+        LIKE_ALREADY_EXISTS("error-message.like-already-exists"),
+        LIKE_DOESNT_EXIST("error-message.like-not-exist"),
+        SCORE_ALREADY_EXISTS("error-message.score-already-exists"),
+        SCORE_DOES_NOT_EXIST("error-message.score-doesnt-exist"),
+        NOT_SCORE_OWNER("error-message.not-score-owner"),
+        BOOK_RENTAL_NOT_FOUND("error-message.book-rental-not-found"),
+        ALREADY_IN_FAVORITES("error-message.already-in-favorites"),
+        NOT_IN_FAVORITES("error-message.not-in-favorites"),
+        ALREADY_IN_WAITING_LIST("error-message.already-in-waiting-list"),
+        NOT_IN_WAITING_LIST("error-message.not-in-waiting-list"),
+        GENRE_NOT_FOUND("error-message.genre-not-found"),
+        LANGUAGE_NOT_FOUND("error-message.language-not-found"),
+        NOT_BOOK_RESERVER("error-message.not-book-reserver"),
+        GENRE_ALREADY_EXISTS("error-message.genre-already-exists"),
+        LANGUAGE_ALREADY_EXISTS("error-message.language-already-exists"),
+        BOOK_NOT_AVAILABLE_FOR_RENTAL("error-message.book-not-available-for-rental"),
+        BOOK_ALREADY_RETURNED("error-message.book-already-returned"),
+        BOOK_NOT_AVAILABLE_FOR_RESERVE("error-message.book-not-available-for-reserve"),
+        BOOK_NOT_AVAILABLE_FOR_APPROVED("error-message.book-not-available-for-approved"),
+        BOOK_NOT_AVAILABLE_FOR_DECLINED("error-message.book-not-available-for-declined"),
+        NOT_APPROVED_BOOK_ACTION("error-message.not-approved-book-action"),
+        WRONG_BOOK_ACTION("error-message.wrong-book-action"),
+        CANNOT_REVOKE_BOOK("error-message.cannot-revoke-book"),
+        CANNOT_RETURN_BOOK("error-message.cannot-return-book"),
+        USERS_NOT_IN_WAITING_LIST("error-message.users-not-in-waiting-list"),
+        WAITING_LIST_NOT_FOUND("error-message.waiting-list-not-found"),
+        NOT_BOOK_OWNER("error-message.not-book-owner"),
+        INVALID_BOOK_TYPE("error-message.invalid-book-type"),
+        CANNOT_UNPUBLISH_BOOK("error-message.cannot-unpublish-book"),
+        CANNOT_CANCEL_BOOK("error-message.cannot-cancel-book")
+        ;
+
+        /**
+         * The key to retrieve the user  message from the properties file.
+         */
+        private final String userMessageProperty;
+
+        /**
+         * Returns an exception instance with the developer message.
+         *
+         * @param msg developer message for {@link ru.relex.libraryservice.dto.exception.ErrorMessage#devMessage ErrorMessage.devMessage} field
+         * @return {@code BookException} instance
+         */
+        public BookException getWith(String msg) {
+            return new BookException(msg, null, this);
+        }
+
+        /**
+         * Returns an exception instance with the developer message and the exception cause.
+         *
+         * @param ex  cause exception
+         * @param msg developer message for {@link ru.relex.libraryservice.dto.exception.ErrorMessage#devMessage ErrorMessage.devMessage} field
+         * @return {@code BookException} instance
+         */
+        public BookException getWith(String msg, Throwable ex) {
+            return new BookException(msg, ex, this);
+        }
+    }
+}

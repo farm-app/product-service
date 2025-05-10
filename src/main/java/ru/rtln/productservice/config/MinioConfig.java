@@ -1,0 +1,18 @@
+package ru.rtln.productservice.config;
+
+import io.minio.MinioClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import ru.rtln.productservice.config.properties.MinioProperties;
+
+@Configuration
+public class MinioConfig {
+
+    @Bean
+    public MinioClient minioClient(MinioProperties minioProperties) {
+        return new MinioClient.Builder()
+                .credentials(minioProperties.getAccessKey(), minioProperties.getSecretKey())
+                .endpoint(minioProperties.getUrl())
+                .build();
+    }
+}

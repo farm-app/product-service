@@ -1,0 +1,67 @@
+server:
+  servlet:
+    context-path: /api/product
+  port: 9104
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761}/eureka/
+    enabled: false
+
+internal:
+  api-key-header-name: Api-key
+  service:
+    auth:
+      url: http://localhost:9101
+      secure-key: ES8p3QFFyPEdpnAdYCdDMPGxm4epBMWdEDLbNB8eSBHjxQmNsk2jjz7ATK2wUCEf
+    user:
+      secure-key: ES8p3QFFyPEdpnAdYCdDMPGxm4epBMWdEDLbNB8eSBHjxQmNsk2jjz7ATK2wUCEf
+
+minio:
+  url: http://localhost:9000
+  external-url: http://localhost:9000
+  access-key: andrey
+  secret-key: andrey_antonov
+  buckets:
+    profile-picture: product-pictures-bucket
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  profiles:
+    active: default
+  application:
+    name: product
+  #  config:
+  #    import: configserver:${CONFIG_SERVER_URL:http://localhost:8888}
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/product
+    username: postgres
+    password: postgres
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: classpath:db/changelog/changelog.yaml
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 10MB
+  jackson:
+    default-property-inclusion: non_null
+    mapper:
+      accept-case-insensitive-enums: true
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+  cloud:
+    config:
+      enabled: false
+

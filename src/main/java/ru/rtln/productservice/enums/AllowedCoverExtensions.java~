@@ -1,0 +1,12 @@
+package ru.relex.libraryservice.enums;
+
+/**
+ * Contains an enumeration of file extensions allowed for book cover.
+ */
+public enum AllowedCoverExtensions {
+
+    JPG,
+    JPEG,
+    PNG,
+    ;
+}

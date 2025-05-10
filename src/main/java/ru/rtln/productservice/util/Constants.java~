@@ -1,0 +1,27 @@
+package ru.relex.libraryservice.util;
+
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
+public class Constants {
+
+    public static final String LIBRARY_MANAGEMENT_PERMISSION = "LIBRARY_MANAGEMENT";
+    public static final String ADMIN_MANAGEMENT_PERMISSION = "ADMIN_MANAGEMENT";
+
+    public static final Long DEFAULT_PAGINATION_PAGE_NUMBER = 1L;
+    public static final Long DEFAULT_PAGINATION_PAGE_SIZE = 100L;
+
+    public static final String MINIO_BUCKET_PUBLIC_POLICY = """
+            {
+                 "Statement": [
+                     {
+                         "Action": "s3:GetObject",
+                         "Effect": "Allow",
+                         "Principal": "*",
+                         "Resource": "arn:aws:s3:::*"
+                     }
+                 ],
+                 "Version": "2012-10-17"
+             }
+    """;
+}

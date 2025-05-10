@@ -1,0 +1,13 @@
+package ru.rtln.productservice.mapper;
+
+import org.mapstruct.Mapper;
+import ru.rtln.productservice.dto.UnitDto;
+import ru.rtln.productservice.entity.Unit;
+
+/**
+ * Интерфейс для преобразования {@link Unit} в {@link UnitDto} и обратно.
+ * Реализация полностью генерируется с помощью MapStruct.
+ */
+@Mapper(componentModel = "spring")
+public interface UnitMapper extends Mappable<Unit, UnitDto> {
+}

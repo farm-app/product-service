@@ -1,0 +1,15 @@
+package ru.rtln.productservice.service.impl;
+
+import org.springframework.stereotype.Service;
+import ru.rtln.common.security.model.AuthenticatedUserModel;
+import ru.rtln.productservice.service.PermissionsService;
+
+@Service
+public class PermissionsServiceImpl implements PermissionsService {
+
+    @Override
+    public boolean checkLibraryManagementPermission(AuthenticatedUserModel userModel) {
+        return userModel.getPermissions().contains(LIBRARY_MANAGEMENT_PERMISSION) ||
+                userModel.getPermissions().contains(ADMIN_MANAGEMENT_PERMISSION);
+    }
+}
