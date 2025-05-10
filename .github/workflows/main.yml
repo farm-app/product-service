@@ -1,4 +1,4 @@
-name: analytics-builder-service-to-prod
+name: product-service-to-prod
 
 on:
   push:
